@@ -14,7 +14,7 @@ const adminSchema = new mongoose.Schema({
       maxlength: 30,
     },
     password: {
-        //hashed admin password, transform(trim,touppercase) , must be a unique 10 digit code
+        //admin password, transform(trim,touppercase) , must be a unique 10 digit code
         type: String,
         required: true,
         unique: true,

@@ -33,7 +33,7 @@ Router.post("/login",async(req,res)=>{
     }
 })
 
-Router.post("/subject",authenticate_admin,async(req,res)=>{
+Router.post("/subject",authenticate_admin,async(req,res)=>{             //add a new subject to db
     try{
         const subject = req.body.subject;
         const result = await Subjects.create({

@@ -2,11 +2,11 @@ const express = require("express");
 const {Performance} = require("../connect");
 const {authenticate_student} = require("../middlewares/student");
 
-const Router = express.Router();
+const Router = express.Router();                                     //authenticate student
 
 Router.use(authenticate_student);
 
-Router.get("/average", async(req,res)=>{
+Router.get("/average", async(req,res)=>{                            //returns average of student for all subjects
     try{
         const student_id = req.student.studentid;
         const results = await Performance.aggregate([
@@ -27,7 +27,7 @@ Router.get("/average", async(req,res)=>{
     }
 })
 
-Router.get("/:subject_id", async(req,res)=>{
+Router.get("/:subject_id", async(req,res)=>{                        //returns performance of student for a particular subject over time
     try{
         const subject_id = req.params.subject_id;
         const student_id = req.student.studentid;
@@ -42,7 +42,7 @@ Router.get("/:subject_id", async(req,res)=>{
     }
 })
 
-Router.post("/:subject_id", async(req,res)=>{
+Router.post("/:subject_id", async(req,res)=>{                       //add a new entry for marks of student in an exam of a subject
     try{
         const subject_id = req.params.subject_id;
         const student_id = req.student.studentid;

@@ -6,7 +6,7 @@ const Router = express.Router();
 
 Router.use(authenticate_student);
 
-const analyzeTrends = (performanceData) => {
+const analyzeTrends = (performanceData) => {         //custom function to see scores are improving/dropping over time for each subject taken by student
     if (performanceData.length === 0) {
         return { message: "No performance data available." };
     }
@@ -43,7 +43,7 @@ const analyzeTrends = (performanceData) => {
     return trendAnalysis; 
 }
 
-Router.get("/", async(req,res)=>{
+Router.get("/", async(req,res)=>{                   //return the trend of student for all subjects
     try{
         const student_id = req.student.studentid;
         const results = await Performance.find({
@@ -57,7 +57,7 @@ Router.get("/", async(req,res)=>{
     }
 })
 
-Router.get("/:subject_id", async(req,res)=>{
+Router.get("/:subject_id", async(req,res)=>{        //returns trend for a particular subject
     try{
         const student_id = req.student.studentid;
         const subject_id = req.params.subject_id;
